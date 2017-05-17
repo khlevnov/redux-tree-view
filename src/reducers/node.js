@@ -1,15 +1,7 @@
-const node = (state = {}, action) => {
-  switch (action.type) {
-    case 'ADD_CHILD':
-      return addChild(state, action.id)
-
-    case 'REMOVE':
-      return remove(state, action.id);
-
-    default:
-      return state;
-  }
-};
+const lastId = state => Math.max.apply(null, [
+  ...Object.keys(state),
+  0
+]);
 
 const addChild = (state, parentId) => {
   const createdId = lastId(state) + 1;
@@ -38,16 +30,18 @@ const addChild = (state, parentId) => {
 
 const remove = (state, idToRemove) => {
   const clearedState = state[idToRemove].children.reduce((clearedState, childId) => {
-    clearedState = remove(clearedState, childId);
-    return clearedState;
+    return remove(clearedState, childId);
   }, state);
 
   const parentId = clearedState[idToRemove].parentId;
-  const parentNode = {
-    [parentId]: Object.assign({}, clearedState[parentId], {
-      children: parentId ? clearedState[parentId].children.filter(item => item !== idToRemove) : []
-    })
-  };
+  let parentNode = {};
+  if (parentId) {
+    parentNode = {
+      [parentId]: Object.assign({}, clearedState[parentId], {
+        children: parentId ? clearedState[parentId].children.filter(item => item !== idToRemove) : []
+      })
+    };
+  }
 
   return Object.assign(
     {},
@@ -61,9 +55,17 @@ const remove = (state, idToRemove) => {
   );
 }
 
-const lastId = state => Math.max.apply(null, [
-  ...Object.keys(state),
-  0
-]);
+const node = (state = {}, action) => {
+  switch (action.type) {
+    case 'ADD_CHILD':
+      return addChild(state, action.id)
+
+    case 'REMOVE':
+      return remove(state, action.id);
+
+    default:
+      return state;
+  }
+};
 
 export default node;
