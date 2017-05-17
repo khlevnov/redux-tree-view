@@ -13,11 +13,10 @@
 
 .node__title {
   display: inline-block;
-  font-size: 14px;
-  width: 80px;
 }
 
 .node__buttons {
   display: inline-block;
-  margin-left: 20px;
+  margin-left: 10px;
+  vertical-align: top;
 }

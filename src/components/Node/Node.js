@@ -1,11 +1,14 @@
 import React from 'react';
 import Button from '../Button/Button';
+import Title from '../Title/Title';
 import './Node.css';
 
-const Node = ({ id, state, isRoot, addChild, remove }) => (
+const Node = ({ id, state, isRoot, addChild, remove, rename }) => (
   <li className="node">
     <div className="node__item">
-      <div className="node__title">{state[id].title}</div>
+      <Title className="node__title" changeHandler={event => rename(id, event.target.value)}>
+        {state[id].title}
+      </Title>
       <div className="node__buttons">
         <Button clickHandler={() => addChild(id)}>+</Button>
         {!isRoot && <Button clickHandler={() => remove(id)}>x</Button>}

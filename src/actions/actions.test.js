@@ -1,4 +1,4 @@
-import { addChild, remove } from './actions';
+import { addChild, remove, rename } from './actions';
 
 describe('actions', () => {
   it('should create an action to add a root node', () => {
@@ -33,6 +33,14 @@ describe('actions', () => {
     expect(remove(12)).toEqual({
       type: 'REMOVE',
       id: 12
+    });
+  });
+
+  it('should create an action to rename element', () => {
+    expect(rename(2, 'Some text')).toEqual({
+      type: 'RENAME',
+      id: 2,
+      text: 'Some text'
     });
   });
 });
