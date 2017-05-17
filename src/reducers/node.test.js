@@ -18,7 +18,7 @@ describe('Node reducer', () => {
       1: {
         id: 1,
         title: 'Element 1',
-        parentId: null,
+        parentId: undefined,
         children: []
       }
     })

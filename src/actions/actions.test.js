@@ -4,7 +4,7 @@ describe('actions', () => {
   it('should create an action to add a root node', () => {
     expect(addChild()).toEqual({
       type: 'ADD_CHILD',
-      id: 1
+      id: undefined
     });
   });
 
