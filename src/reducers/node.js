@@ -10,20 +10,19 @@ const node = (state = {}, action) => {
         children: []
       };
 
-      const stateWithChild = Object.assign({}, state, { [createdId]: childItem });
-
-      if (!action.id) {
-        return stateWithChild;
+      let parentItem = {};
+      if (action.id) {
+        parentItem = {
+          [action.id]: Object.assign({}, state[action.id], {
+            children: [
+              ...state[action.id].children,
+              createdId
+            ]
+          })
+        }
       }
 
-      const parentItem = Object.assign({}, state[action.id], {
-        children: [
-          ...state[action.id].children,
-          createdId
-        ]
-      });
-
-      return Object.assign({}, stateWithChild, { [action.id]: parentItem });
+      return Object.assign({}, state, { [createdId]: childItem }, parentItem);
 
     case 'REMOVE':
       return state;
