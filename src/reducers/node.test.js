@@ -140,11 +140,11 @@ describe('Node reducer', () => {
         parentId: 5,
         children: []
       }
-    }, addChild(1))).toEqual({
+    }, remove(2))).toEqual({
       1: {
         id: 1,
         title: 'Element 1',
-        parentId: null,
+        parentId: undefined,
         children: []
       }
     })
@@ -166,6 +166,6 @@ describe('Node reducer', () => {
         parentId: 1,
         children: []
       }
-    }, remove(2))).toEqual({})
+    }, remove(1))).toEqual({})
   });
 });
