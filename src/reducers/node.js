@@ -63,6 +63,10 @@ const node = (state = {}, action) => {
     case 'REMOVE':
       return remove(state, action.id);
 
+    case 'RENAME':
+      const renamedNode = Object.assign({}, state[action.id], { title: action.text })
+      return Object.assign({}, state, { [action.id]: renamedNode });
+
     default:
       return state;
   }

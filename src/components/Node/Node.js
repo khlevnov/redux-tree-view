@@ -17,7 +17,7 @@ const Node = ({ id, state, isRoot, addChild, remove, rename }) => (
     {state[id].nodes.length && (
       <ul className="node__list">
         {state[id].nodes.map(id => (
-          <Node id={id} key={id} state={state} addChild={addChild} remove={remove} />
+          <Node id={id} key={id} state={state} addChild={addChild} remove={remove} rename={rename} />
         ))}
       </ul>
     )}

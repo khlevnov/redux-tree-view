@@ -1,5 +1,5 @@
 import node from './node';
-import { addChild, remove } from '../actions/actions';
+import { addChild, remove, rename } from '../actions/actions';
 import initialState from '../store/initialState';
 
 describe('Node reducer', () => {
@@ -203,5 +203,73 @@ describe('Node reducer', () => {
         nodes: []
       }
     }, remove(1))).toEqual({})
+  });
+
+  it('should change node title', () => {
+    expect(node({
+      1: {
+        id: 1,
+        title: 'Element 1',
+        parentId: undefined,
+        nodes: [
+          2
+        ]
+      },
+      2: {
+        id: 2,
+        title: 'Element 2',
+        parentId: 1,
+        nodes: []
+      }
+    }, rename(1, 'New title'))).toEqual({
+      1: {
+        id: 1,
+        title: 'New title',
+        parentId: undefined,
+        nodes: [
+          2
+        ]
+      },
+      2: {
+        id: 2,
+        title: 'Element 2',
+        parentId: 1,
+        nodes: []
+      }
+    })
+  });
+
+  it('should change another node title', () => {
+    expect(node({
+      1: {
+        id: 1,
+        title: 'Element 1',
+        parentId: undefined,
+        nodes: [
+          2
+        ]
+      },
+      2: {
+        id: 2,
+        title: 'Element 2',
+        parentId: 1,
+        nodes: []
+      }
+    }, rename(2, 'New title too'))).toEqual({
+      1: {
+        id: 1,
+        title: 'Element 1',
+        parentId: undefined,
+        nodes: [
+          2
+        ]
+      },
+      2: {
+        id: 2,
+        title: 'New title too',
+        parentId: 1,
+        nodes: []
+      }
+    })
   });
 });
