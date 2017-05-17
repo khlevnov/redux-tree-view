@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+import './Button.css';
 
 const Button = ({ text, className, children }) => (
   <a className={'button ' + className}>{children}</a>

@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../Button';
-import './styles.css';
+import Button from '../Button/Button';
+import './Node.css';
 
 const Node = ({ title, isRoot, children }) => (
   <li className="node">

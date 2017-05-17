@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Node from './components/Node';
+import React from 'react';
+import Node from '../Node/Node';
 
-const App = () => {
+const App = () => (
   <ul>
     <Node title="Element 1" isRoot>
       <Node title="Element 2" />
@@ -12,6 +12,6 @@ const App = () => {
       <Node title="Element 4" />
     </Node>
   </ul>
-}
+);
 
 export default App;
