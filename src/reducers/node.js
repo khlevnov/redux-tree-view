@@ -1,4 +1,4 @@
-const node = (state = [], action) => {
+const node = (state = {}, action) => {
   switch (action.type) {
     case 'ADD':
       return state;
