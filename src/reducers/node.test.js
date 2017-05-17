@@ -19,7 +19,7 @@ describe('Node reducer', () => {
         id: 1,
         title: 'Element 1',
         parentId: undefined,
-        children: []
+        nodes: []
       }
     })
   });
@@ -30,7 +30,7 @@ describe('Node reducer', () => {
         id: 1,
         title: 'Element 1',
         parentId: undefined,
-        children: [
+        nodes: [
           2
         ]
       },
@@ -38,14 +38,14 @@ describe('Node reducer', () => {
         id: 2,
         title: 'Element 2',
         parentId: 1,
-        children: []
+        nodes: []
       }
     }, addChild(1))).toEqual({
       1: {
         id: 1,
         title: 'Element 1',
         parentId: undefined,
-        children: [
+        nodes: [
           2, 3
         ]
       },
@@ -53,13 +53,13 @@ describe('Node reducer', () => {
         id: 2,
         title: 'Element 2',
         parentId: 1,
-        children: []
+        nodes: []
       },
       3: {
         id: 3,
         title: 'Element 3',
         parentId: 1,
-        children: []
+        nodes: []
       }
     })
   });
@@ -70,7 +70,7 @@ describe('Node reducer', () => {
         id: 1,
         title: 'Element 1',
         parentId: undefined,
-        children: [
+        nodes: [
           2
         ]
       },
@@ -78,25 +78,25 @@ describe('Node reducer', () => {
         id: 2,
         title: 'Element 2',
         parentId: 1,
-        children: []
+        nodes: []
       }
     }, remove(2))).toEqual({
       1: {
         id: 1,
         title: 'Element 1',
         parentId: undefined,
-        children: []
+        nodes: []
       }
     })
   });
 
-  it('should remove node with children', () => {
+  it('should remove node with nodes', () => {
     expect(node({
       1: {
         id: 1,
         title: 'Element 1',
         parentId: undefined,
-        children: [
+        nodes: [
           2
         ]
       },
@@ -104,7 +104,7 @@ describe('Node reducer', () => {
         id: 2,
         title: 'Element 2',
         parentId: 1,
-        children: [
+        nodes: [
           3
         ]
       },
@@ -112,25 +112,25 @@ describe('Node reducer', () => {
         id: 3,
         title: 'Element 3',
         parentId: 2,
-        children: []
+        nodes: []
       }
     }, remove(2))).toEqual({
       1: {
         id: 1,
         title: 'Element 1',
         parentId: undefined,
-        children: []
+        nodes: []
       }
     })
   });
 
-  it('should remove another node with children', () => {
+  it('should remove another node with nodes', () => {
     expect(node({
       1: {
         id: 1,
         title: 'Element 1',
         parentId: undefined,
-        children: [
+        nodes: [
           2
         ]
       },
@@ -138,7 +138,7 @@ describe('Node reducer', () => {
         id: 2,
         title: 'Element 2',
         parentId: 1,
-        children: [
+        nodes: [
           3, 4
         ]
       },
@@ -146,7 +146,7 @@ describe('Node reducer', () => {
         id: 3,
         title: 'Element 3',
         parentId: 2,
-        children: [
+        nodes: [
           5, 6
         ]
       },
@@ -154,13 +154,13 @@ describe('Node reducer', () => {
         id: 4,
         title: 'Element 4',
         parentId: 2,
-        children: []
+        nodes: []
       },
       5: {
         id: 5,
         title: 'Element 5',
         parentId: 3,
-        children: [
+        nodes: [
           7
         ]
       },
@@ -168,20 +168,20 @@ describe('Node reducer', () => {
         id: 6,
         title: 'Element 6',
         parentId: 3,
-        children: []
+        nodes: []
       },
       7: {
         id: 7,
         title: 'Element 7',
         parentId: 5,
-        children: []
+        nodes: []
       }
     }, remove(2))).toEqual({
       1: {
         id: 1,
         title: 'Element 1',
         parentId: undefined,
-        children: []
+        nodes: []
       }
     })
   });
@@ -192,7 +192,7 @@ describe('Node reducer', () => {
         id: 1,
         title: 'Element 1',
         parentId: undefined,
-        children: [
+        nodes: [
           2
         ]
       },
@@ -200,7 +200,7 @@ describe('Node reducer', () => {
         id: 2,
         title: 'Element 2',
         parentId: 1,
-        children: []
+        nodes: []
       }
     }, remove(1))).toEqual({})
   });

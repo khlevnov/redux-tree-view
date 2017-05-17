@@ -10,15 +10,15 @@ const addChild = (state, parentId) => {
     id: createdId,
     title: `Element ${createdId}`,
     parentId: parentId,
-    children: []
+    nodes: []
   };
 
   let parentNode = {};
   if (parentId) {
     parentNode = {
       [parentId]: Object.assign({}, state[parentId], {
-        children: [
-          ...state[parentId].children,
+        nodes: [
+          ...state[parentId].nodes,
           createdId
         ]
       })
@@ -29,7 +29,7 @@ const addChild = (state, parentId) => {
 }
 
 const remove = (state, idToRemove) => {
-  const clearedState = state[idToRemove].children.reduce((clearedState, childId) => {
+  const clearedState = state[idToRemove].nodes.reduce((clearedState, childId) => {
     return remove(clearedState, childId);
   }, state);
 
@@ -38,7 +38,7 @@ const remove = (state, idToRemove) => {
   if (parentId) {
     parentNode = {
       [parentId]: Object.assign({}, clearedState[parentId], {
-        children: parentId ? clearedState[parentId].children.filter(item => item !== idToRemove) : []
+        nodes: parentId ? clearedState[parentId].nodes.filter(item => item !== idToRemove) : []
       })
     };
   }
