@@ -8,7 +8,7 @@ const Node = ({ title, isRoot, children }) => (
 			<div className="node__title">{title}</div>
 			<div className="node__buttons">
         <Button className="node__add">+</Button>
-        {!isRoot ? <Button className="node__remove">x</Button> : ''}
+        {!isRoot && <Button className="node__remove">x</Button>}
 			</div>
 		</div>
     {children &&
