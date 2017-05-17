@@ -5,7 +5,7 @@ import App from './App';
 
 it('renders without crashing', () => {
   ReactDOM.render(
-    <App store={configureStore()}/>,
+    <App store={configureStore()} />,
     document.createElement('div')
   );
 });

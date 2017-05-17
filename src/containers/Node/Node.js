@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Node from '../../components/Node/Node';
-import * as actions from '../../actions/actions';
+import { addChild, remove } from '../../actions/actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -10,5 +10,8 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  actions
+  {
+    addChild,
+    remove
+  }
 )(Node);

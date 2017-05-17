@@ -14,6 +14,7 @@
 .node__title {
   display: inline-block;
   font-size: 14px;
+  width: 80px;
 }
 
 .node__buttons {
