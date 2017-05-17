@@ -37,20 +37,24 @@ const addChild = (state, parentId) => {
 }
 
 const remove = (state, idToRemove) => {
-  const ids = Object.keys(state);
-  const parentId = state[idToRemove].parentId;
+  const clearedState = state[idToRemove].children.reduce((clearedState, childId) => {
+    clearedState = remove(clearedState, childId);
+    return clearedState;
+  }, state);
 
+  const parentId = clearedState[idToRemove].parentId;
   const parentNode = {
-    [parentId]: Object.assign({}, state[parentId], {
-      children: parentId ? state[parentId].children.filter(item => item !== idToRemove) : []
+    [parentId]: Object.assign({}, clearedState[parentId], {
+      children: parentId ? clearedState[parentId].children.filter(item => item !== idToRemove) : []
     })
   };
 
   return Object.assign(
     {},
-    ids.filter(id => parseInt(id, 10) !== idToRemove)
+    Object.keys(clearedState)
+      .filter(id => parseInt(id, 10) !== idToRemove)
       .reduce((filteredState, id) => {
-        filteredState[id] = state[id];
+        filteredState[id] = clearedState[id];
         return filteredState;
       }, {}),
     parentNode
