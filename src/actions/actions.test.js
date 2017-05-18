@@ -1,4 +1,38 @@
-import { addChild, remove, rename } from './actions';
+import { addChild, remove, rename } from '../actions/actions';
+
+class LocalStorageMock {
+  constructor() {
+    this.store = {};
+  }
+
+  clear() {
+    this.store = {};
+  }
+
+  getItem(key) {
+    return this.store[key];
+  }
+
+  setItem(key, value) {
+    this.store[key] = value.toString();
+  }
+};
+
+global.localStorage = new LocalStorageMock;
+
+describe('local storage', () => {
+  it('should save state in local storage on creating node', () => {
+    //
+  });
+
+  it('should save state in local storage on removing node', () => {
+    //
+  });
+
+  it('should save state in local storage on renaming node', () => {
+    //
+  });
+});
 
 describe('actions', () => {
   it('should create an action to add a root node', () => {

@@ -1,14 +1,13 @@
 import node from './node';
 import { addChild, remove, rename } from '../actions/actions';
-import initialState from '../store/initialState';
 
-describe('Node reducer', () => {
+describe('node reducer', () => {
   it('should return the empty initial state', () => {
     expect(node(undefined, {})).toEqual({});
   });
 
   it('should return the predefined state state', () => {
-    expect(node(initialState, {})).toEqual(initialState);
+    expect(node({ a: 1 }, {})).toEqual({ a: 1 });
   });
 
   it('should add node as a root node', () => {
